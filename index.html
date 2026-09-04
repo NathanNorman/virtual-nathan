@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Virtual Nathan is a tiny local language model with an animated browser voice."
+    />
+    <title>Virtual Nathan</title>
+    <link rel="icon" href="./assets/brand/toast-slice-icon_color.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/mtn4lrp.css" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="virtual-stage" aria-labelledby="page-title">
+        <div class="stage-meta" aria-hidden="true">
+          <img class="toast-mark" src="./assets/brand/toast-slice-icon_color.svg" alt="" />
+          <span class="status-light"></span>
+        </div>
+
+        <div
+          id="progress-track"
+          class="progress-track"
+          role="progressbar"
+          aria-label="Virtual Nathan loading progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <span id="progress-bar"></span>
+        </div>
+
+        <div class="virtual-layout">
+          <div class="interaction-column">
+            <h1 id="page-title">Virtual Nathan</h1>
+
+            <form id="prompt-form" class="prompt-dock">
+              <label class="sr-only" for="prompt-input">Ask Virtual Nathan anything</label>
+              <textarea
+                id="prompt-input"
+                name="prompt"
+                rows="1"
+                maxlength="600"
+                autocomplete="off"
+                required
+              ></textarea>
+              <span id="character-count" class="sr-only" aria-live="polite">0 / 600</span>
+              <div class="button-row">
+                <button
+                  id="ask-button"
+                  class="button button-primary"
+                  type="submit"
+                  aria-label="Ask and speak"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h13M13 6l6 6-6 6" />
+                  </svg>
+                </button>
+                <button
+                  id="stop-button"
+                  class="button button-secondary"
+                  type="button"
+                  aria-label="Stop"
+                  disabled
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="7" y="7" width="10" height="10" rx="1" />
+                  </svg>
+                </button>
+                <button
+                  id="speak-button"
+                  class="button button-secondary"
+                  type="button"
+                  aria-label="Replay the last reply"
+                  disabled
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M11 6 7 10H4v4h3l4 4V6Z" />
+                    <path d="M15 9c1 .8 1.5 1.8 1.5 3S16 14.2 15 15" />
+                    <path d="M17.5 6.5c1.8 1.5 2.7 3.3 2.7 5.5s-.9 4-2.7 5.5" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <aside class="portrait-column" aria-label="Animated Virtual Nathan portrait">
+            <div class="portrait-stack">
+              <img
+                class="mosaic-art"
+                src="./assets/brand/seamless-mosaic-filled.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <div class="portrait-shell" aria-hidden="true">
+                <span class="sound-wave sound-wave-left"></span>
+                <span class="sound-wave sound-wave-right"></span>
+                <img class="portrait-base" src="./assets/portrait.png" alt="" />
+                <img
+                  id="portrait-mouth-overlay"
+                  class="portrait-mouth-overlay"
+                  src="./assets/portrait-frames/frame-01.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section id="answer-panel" class="sr-only" aria-labelledby="answer-heading">
+          <h2 id="answer-heading">Virtual Nathan reply</h2>
+          <span id="answer-state">Waiting</span>
+          <p id="answer-output" class="is-placeholder" aria-live="polite" aria-busy="false">
+            Virtual Nathan is getting ready.
+          </p>
+        </section>
+
+        <section class="sr-only" aria-label="Runtime status">
+          <p id="model-status">Model not loaded; first run is about 276 MiB</p>
+          <p id="voice-status">Voice checking</p>
+          <p id="activity-status" role="status" aria-live="polite">Starting Virtual Nathan</p>
+          <p id="generation-stats" aria-live="polite"></p>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="./app.js?v=9"></script>
+  </body>
+</html>
